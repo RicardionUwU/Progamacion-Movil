@@ -28,6 +28,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Pattern;
 
@@ -145,6 +149,32 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+
+                            String uid = task.getResult().getUser().getUid();
+
+                            FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+                            firebaseDatabase.getReference().child("Users").child(uid).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    int userType=snapshot.getValue(Integer.class);
+                                    if(userType == 0){
+                                        Intent in = new Intent(LoginActivity.this,UserActivity.class);
+                                        startActivity(in);
+                                    }
+
+                                    if(userType == 1){
+                                        Intent in = new Intent(LoginActivity.this,AdminActivity.class);
+                                        startActivity(in);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                             Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                             startActivity(intent);
                             finish();

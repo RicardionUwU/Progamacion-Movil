@@ -50,7 +50,7 @@ public class UserActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
-            }
+            }  
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

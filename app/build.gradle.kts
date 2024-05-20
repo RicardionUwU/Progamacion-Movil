@@ -40,12 +40,20 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
+    implementation ("com.google.firebase:firebase-database:20.0.3")
     //Firebase
+
+    //dependencias startActivityForResult//
+    implementation ("androidx.activity:activity-ktx:1.3.1")
+    implementation ("androidx.fragment:fragment-ktx:1.3.6")
+    //dependencias startActivityForResult//
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

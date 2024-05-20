@@ -22,6 +22,12 @@
             android:value="AIzaSyB3gtHrFNkddYKHLW9dW6aBci2QIAawj8c" />
 
         <activity
+            android:name=".Upload"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity

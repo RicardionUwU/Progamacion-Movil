@@ -26,10 +26,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
+    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
 
     TextView nuevoUsuario, bienvenidoLabel, continuarLabel;
     ImageView signUpImageView;
@@ -117,6 +119,18 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+                            String uid=task.getResult().getUser().getUid();
+                            Users user = new Users(uid,emailEditText.getText().toString(),passwordEditText.getText().toString(),0);
+
+
+
+
+                            firebaseDatabase.getReference().child("Users").child(uid).setValue(user);
+
+
+
+
                             Intent intent = new Intent(SignUpActivity.this, UserActivity.class);
                             startActivity(intent);
                             finish();
