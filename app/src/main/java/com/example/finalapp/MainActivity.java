@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
         //Agregar Animaciones
         Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);
         Animation animacion2 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_abajo);

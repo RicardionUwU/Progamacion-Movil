@@ -16,10 +16,16 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import android.net.Uri;
+
 public class UserActivity extends AppCompatActivity {
+
+
 
     TextView emailTextView;
     MaterialButton logoutButton;
+
+    MaterialButton payButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,23 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        Button payButton = (Button)findViewById(R.id.pay);
+
+        // Configurar OnClickListener para el botón pay
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.paypal.com/ncp/payment/9PXJFAY98LMYQ"; // Reemplaza con el enlace que desees
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+
+
+
         emailTextView = findViewById(R.id.emailTextView);
         logoutButton = findViewById(R.id.logoutButton);
 
